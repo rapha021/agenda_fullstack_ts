@@ -1,6 +1,7 @@
 import express from "express"
 import { appRoutes } from "./routes"
-import { errorMiddleware } from "./middlewares/error.middleware"
+import errorMiddleware from "./middlewares/error.middleware"
+import "express-async-errors"
 
 const app = express()
 
@@ -10,4 +11,4 @@ appRoutes(app)
 
 app.use(errorMiddleware)
 
-app.listen(3000)
+export default app
