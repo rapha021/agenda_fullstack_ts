@@ -4,7 +4,8 @@ import ReactDOM from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
 import App from "./App"
 import "./index.css"
-import MainProvider from "./contexts/mainContext"
+import MainProvider from "./contexts/mainContext/mainContext"
+import AuthProvider from "./contexts/authContext/authContext"
 
 const colors = {
   brand: {
@@ -19,11 +20,13 @@ const theme = extendTheme({ colors })
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <MainProvider>
-        <ChakraProvider theme={theme} resetCSS>
-          <App />
-        </ChakraProvider>
-      </MainProvider>
+      <AuthProvider>
+        <MainProvider>
+          <ChakraProvider theme={theme} resetCSS>
+            <App />
+          </ChakraProvider>
+        </MainProvider>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 )

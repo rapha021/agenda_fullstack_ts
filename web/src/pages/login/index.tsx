@@ -9,30 +9,43 @@ import {
   Text,
 } from "@chakra-ui/react"
 import { useState } from "react"
+import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
-import { useMain } from "../../contexts/mainContext"
+import { useAuth } from "../../contexts/authContext/authContext"
+import { useMain } from "../../contexts/mainContext/mainContext"
 import { Form } from "./style"
 
 export const LoginPage = () => {
   const [password, setPassword] = useState(true)
 
-  const { handleLogin, loading } = useMain()
+  const { loading } = useMain()
+
+  const { handleLogin } = useAuth()
 
   const handleClick = () => setPassword(!password)
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
   return (
     <Flex justifyContent="center">
-      <Form onSubmit={handleLogin}>
+      <Form onSubmit={handleSubmit(handleLogin)}>
         <FormControl isRequired>
           <FormLabel>Seu email:</FormLabel>
-          <Input type="email" id="email" />
+          <Input type="email" {...register("email")} />
         </FormControl>
 
         <FormControl isRequired>
           <FormLabel>Sua senha:</FormLabel>
 
           <InputGroup size="md">
-            <Input type={password ? "password" : "text"} id="password" />
+            <Input
+              type={password ? "password" : "text"}
+              {...register("password")}
+            />
 
             <InputRightElement w="90px">
               <Button size="sm" onClick={handleClick}>
