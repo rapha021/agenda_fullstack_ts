@@ -6,19 +6,23 @@ import {
   Button,
   Text,
   ButtonGroup,
+  Heading,
 } from "@chakra-ui/react"
 import { useMain } from "../../contexts/mainContext/mainContext"
 
-export const DeleteContactModal = () => {
-  const { onClose, loading, handleDeleteContact } = useMain()
+export const DeleteUserModal = () => {
+  const { onClose, loading, handleDeleteUser } = useMain()
 
   return (
     <>
-      <ModalHeader>Deletar contato</ModalHeader>
+      <ModalHeader>Deletar Perfil</ModalHeader>
       <ModalCloseButton />
-      <form onSubmit={handleDeleteContact}>
+      <form onSubmit={handleDeleteUser}>
         <ModalBody>
-          <Text>Tem certeza que quer deletar esse contato?</Text>
+          <Heading size="md">Tem certeza que quer deletar sua conta?</Heading>
+          <Text color="red" fontWeight="bold">
+            Todos os seus dados serão perdidos!
+          </Text>
         </ModalBody>
         <ModalFooter>
           <ButtonGroup>

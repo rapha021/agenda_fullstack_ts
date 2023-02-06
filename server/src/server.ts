@@ -1,6 +1,7 @@
 import app from "./app"
 import { AppDataSource } from "./data-source"
 import errorMiddleware from "./middlewares/error.middleware"
+
 ;(async () => {
   await AppDataSource.initialize()
     .then(() => {

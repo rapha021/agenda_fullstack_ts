@@ -11,9 +11,11 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react"
-import { useMain } from "../../contexts/mainContext"
+import { useForm } from "react-hook-form"
+import { useMain } from "../../contexts/mainContext/mainContext"
 import { AddModal } from "../AddModal"
-import { DeleteModal } from "../DeleteContactModal"
+import { DeleteContactModal } from "../DeleteContactModal"
+import { DeleteUserModal } from "../DeleteUserModal"
 import { EditModal } from "../EditContactModal"
 import { EditUserModal } from "../EditUserModal"
 
@@ -28,9 +30,11 @@ export const ModalDashboard = () => {
         {tabs === "edit" ? (
           <EditModal />
         ) : tabs === "delete" ? (
-          <DeleteModal />
+          <DeleteContactModal />
         ) : tabs === "editUser" ? (
           <EditUserModal />
+        ) : tabs === "deleteUser" ? (
+          <DeleteUserModal />
         ) : (
           <AddModal />
         )}

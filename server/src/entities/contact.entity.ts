@@ -3,6 +3,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm"
@@ -25,7 +26,6 @@ export class Contact {
   @CreateDateColumn()
   createdAt: Date
 
-  @Exclude()
   @ManyToOne((type) => User, (users) => users.contacts, {
     onDelete: "CASCADE",
   })
