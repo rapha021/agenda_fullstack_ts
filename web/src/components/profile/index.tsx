@@ -13,7 +13,7 @@ import {
   ButtonGroup,
   Button,
 } from "@chakra-ui/react"
-import { useMain } from "../../contexts/mainContext"
+import { useMain } from "../../contexts/mainContext/mainContext"
 
 export const Profile = () => {
   const { user, onOpen, setTabs } = useMain()
@@ -56,7 +56,13 @@ export const Profile = () => {
             >
               Editar perfil
             </Button>
-            <Button variant="outline" isDisabled>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTabs("deleteUser")
+                onOpen()
+              }}
+            >
               Deletar conta
             </Button>
           </ButtonGroup>

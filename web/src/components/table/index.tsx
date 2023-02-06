@@ -13,7 +13,7 @@ import {
   Button,
 } from "@chakra-ui/react"
 import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons"
-import { useMain } from "../../contexts/mainContext"
+import { useMain } from "../../contexts/mainContext/mainContext"
 import { IContact } from "../../interface/contacts.interface"
 
 export const ContactsTable = () => {

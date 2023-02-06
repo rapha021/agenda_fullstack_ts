@@ -1,5 +1,6 @@
 import { AppDataSource } from "../../data-source"
 import { Contact } from "../../entities/contact.entity"
+import { User } from "../../entities/user.entity"
 import { AppError } from "../../errors/appError"
 import { IContactRequestData } from "../../interfaces/contact.interface"
 
@@ -9,20 +10,22 @@ const updateContactService = async (
   userId: string
 ) => {
   const contactRepository = AppDataSource.getRepository(Contact)
+  const userRepository = AppDataSource.getRepository(User)
 
-  let contact = await contactRepository.findOneBy({ id: contactId })
+  let user = await userRepository.findOneBy({ id: userId })
+
+  let contact = user?.contacts.find((contact) => contact.id === contactId)
 
   if (!contact) {
     throw new AppError(404, "Contato não encontrado.")
   }
 
-  if (contact.user.id !== userId) {
-    throw new AppError(404, "Contato não encontrado.")
-  }
 
   await contactRepository.update(contactId, data)
 
-  contact = await contactRepository.findOneBy({ id: contactId })
+  user = await userRepository.findOneBy({ id: userId })
+
+  contact = user?.contacts.find((contact) => contact.id === contactId)
 
   return contact
 }

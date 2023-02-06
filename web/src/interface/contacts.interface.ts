@@ -10,5 +10,5 @@ export interface IContactEdit {
   name?: string
   email?: string
   number?: string
-  id: string
+  id?: string
 }

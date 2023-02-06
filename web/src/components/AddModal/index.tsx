@@ -11,29 +11,37 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react"
-import { useMain } from "../../contexts/mainContext"
+import { useForm } from "react-hook-form"
+import { useMain } from "../../contexts/mainContext/mainContext"
 
 export const AddModal = () => {
   const { loading, handleCreateContact } = useMain()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
   return (
     <>
       <ModalHeader>Adicionar contato na agenda</ModalHeader>
       <ModalCloseButton />
-      <form onSubmit={handleCreateContact}>
+      <form onSubmit={handleSubmit(handleCreateContact)}>
         <ModalBody>
           <FormControl>
             <FormLabel>Nome completo:</FormLabel>
-            <Input type="text" id="name" />
+            <Input type="text" {...register("name")} />
           </FormControl>
 
           <FormControl>
             <FormLabel>Email:</FormLabel>
-            <Input type="email" id="email" />
+            <Input type="email" {...register("email")} />
           </FormControl>
 
           <FormControl>
             <FormLabel>Número:</FormLabel>
-            <Input type="number" id="number" />
+            <Input type="number" {...register("number")} />
           </FormControl>
         </ModalBody>
         <ModalFooter>
