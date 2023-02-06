@@ -8,25 +8,23 @@ const createContactService = async (data: IContactRequestData, id: string) => {
   const contactRepository = AppDataSource.getRepository(Contact)
   const userRepository = AppDataSource.getRepository(User)
 
-  const emailAlreadyExists = await contactRepository.findOneBy({
-    email: data.email,
-  })
-
-  if (emailAlreadyExists) {
-    throw new AppError(409, "Email já está sendo utilizado para um contato")
-  }
-
-  const numberAlreadyExists = await contactRepository.findOneBy({
-    number: data.number,
-  })
-
-  if (numberAlreadyExists) {
-    throw new AppError(409, "Número já está sendo utilizado para um contato")
-  }
-
   const user = await userRepository.findOneBy({ id })
 
-  const contact = await contactRepository.save({ ...data, user: user! })
+  if (!user) {
+    throw new AppError(404, "Usuário não encontrado")
+  }
+
+  user.contacts.map((contact) => {
+    if (contact.email === data.email) {
+      throw new AppError(409, "Email já está sendo utilizado para um contato")
+    }
+
+    if (contact.number === data.number) {
+      throw new AppError(409, "Número já está sendo utilizado para um contato")
+    }
+  })
+
+  const contact = await contactRepository.save({ ...data, user: user })
 
   return contact
 }

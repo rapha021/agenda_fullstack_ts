@@ -16,10 +16,10 @@ export class Contact {
   @Column({ length: 256 })
   name: string
 
-  @Column({ length: 256, unique: true })
+  @Column({ length: 256 })
   email: string
 
-  @Column({ length: 11, unique: true })
+  @Column({ length: 11 })
   number: string
 
   @CreateDateColumn()
@@ -27,7 +27,6 @@ export class Contact {
 
   @Exclude()
   @ManyToOne((type) => User, (users) => users.contacts, {
-    eager: true,
     onDelete: "CASCADE",
   })
   user: User

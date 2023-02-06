@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   OneToMany,
   PrimaryGeneratedColumn,
+  JoinTable,
 } from "typeorm"
 import { Contact } from "./contact.entity"
 
@@ -29,6 +30,9 @@ export class User {
   @CreateDateColumn()
   createdAt: Date
 
-  @OneToMany((type) => Contact, (contacts) => contacts.user)
+  @OneToMany((type) => Contact, (contacts) => contacts.user, {
+    eager: true,
+  })
+  @JoinTable()
   contacts: Contact[]
 }

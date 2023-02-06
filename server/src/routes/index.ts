@@ -1,7 +1,9 @@
 import { Express } from "express"
 import userAuthController from "../controllers/auth/userAuth.controller"
 import createContactController from "../controllers/contact/createContact.controller"
+import deleteContactController from "../controllers/contact/deleteContact.controller"
 import listContactsController from "../controllers/contact/listContacts.controller"
+import updateContactController from "../controllers/contact/updateContact.controller"
 import createUserController from "../controllers/user/createUser.controller"
 import deleteUserController from "../controllers/user/deleteUser.controller"
 import listUserController from "../controllers/user/listUser.controller"
@@ -22,4 +24,6 @@ export const appRoutes = (app: Express) => {
 
   app.post("/contact", ensureAuthMiddleware, createContactController)
   app.get("/contact", ensureAuthMiddleware, listContactsController)
+  app.patch("/contact/:id", ensureAuthMiddleware, updateContactController)
+  app.delete("/contact/:id", ensureAuthMiddleware, deleteContactController)
 }
