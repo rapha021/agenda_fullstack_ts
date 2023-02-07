@@ -67,16 +67,16 @@ export const Profile = () => {
             >
               Deletar conta
             </Button>
-            <Button
-              variant="outline"
-              onClick={() => {
-                window.localStorage.removeItem("@agenda:token")
-                setAuthenticated.off()
-              }}
-            >
-              Deletar conta
-            </Button>
           </ButtonGroup>
+          <Button
+            variant="outline"
+            onClick={() => {
+              window.localStorage.removeItem("@agenda:token")
+              setAuthenticated.off()
+            }}
+          >
+            Sair
+          </Button>
         </CardFooter>
       </CardBody>
     </Card>
