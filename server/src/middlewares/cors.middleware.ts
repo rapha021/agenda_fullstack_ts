@@ -6,7 +6,10 @@ const corsMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173")
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://agenda.rapha021.vercel.app"
+  )
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE")
 
   next()
