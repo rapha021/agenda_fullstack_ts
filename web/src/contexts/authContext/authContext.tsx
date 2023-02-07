@@ -78,6 +78,7 @@ const AuthProvider = ({ children }: IAuthProps) => {
 
   useEffect(() => {
     if (authenticated) {
+      navigate("/dashboard")
       api
         .get<IContact[]>("/contact", {
           headers: { Authorization: `Bearer ${token}` },
@@ -93,6 +94,7 @@ const AuthProvider = ({ children }: IAuthProps) => {
           setUser(res.data)
         })
     }
+    navigate("/login")
   }, [token, authenticated, loading])
 
   return (

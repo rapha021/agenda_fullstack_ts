@@ -58,13 +58,13 @@ export const RegisterPage = () => {
         <Flex justifyContent="space-between">
           <Text>Já tem uma conta?</Text>
 
-          <Link to="/register">
+          <Link to="/login">
             <Button variant="link">Ir para login</Button>
           </Link>
         </Flex>
 
         <Button type="submit" w="100%" isLoading={loading}>
-          Logar
+          Registrar
         </Button>
       </Form>
     </Flex>

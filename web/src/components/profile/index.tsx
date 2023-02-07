@@ -14,9 +14,11 @@ import {
   Button,
 } from "@chakra-ui/react"
 import { useMain } from "../../contexts/mainContext/mainContext"
+import { useAuth } from "../../contexts/authContext/authContext"
 
 export const Profile = () => {
   const { user, onOpen, setTabs } = useMain()
+  const { setAuthenticated } = useAuth()
   return (
     <Card>
       <CardHeader pb="0">
@@ -61,6 +63,15 @@ export const Profile = () => {
               onClick={() => {
                 setTabs("deleteUser")
                 onOpen()
+              }}
+            >
+              Deletar conta
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => {
+                window.localStorage.removeItem("@agenda:token")
+                setAuthenticated.off()
               }}
             >
               Deletar conta
