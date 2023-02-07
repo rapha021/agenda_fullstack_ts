@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express"
-import cors from "cors"
 
 const corsMiddleware = async (
   req: Request,

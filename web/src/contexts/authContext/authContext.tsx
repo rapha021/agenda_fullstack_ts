@@ -73,6 +73,8 @@ const AuthProvider = ({ children }: IAuthProps) => {
       return setToken(tokenStorage)
     }
 
+    navigate("/login")
+
     return setAuthenticated.off()
   }, [authenticated])
 
@@ -94,7 +96,6 @@ const AuthProvider = ({ children }: IAuthProps) => {
           setUser(res.data)
         })
     }
-    navigate("/login")
   }, [token, authenticated, loading])
 
   return (
