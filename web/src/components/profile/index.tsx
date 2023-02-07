@@ -48,7 +48,7 @@ export const Profile = () => {
         </Stack>
 
         <CardFooter>
-          <ButtonGroup>
+          <ButtonGroup flexWrap="wrap" maxW="260px">
             <Button
               variant="solid"
               onClick={() => {
@@ -67,16 +67,16 @@ export const Profile = () => {
             >
               Deletar conta
             </Button>
+            <Button
+              variant="outline"
+              onClick={() => {
+                window.localStorage.removeItem("@agenda:token")
+                setAuthenticated.off()
+              }}
+            >
+              Sair
+            </Button>
           </ButtonGroup>
-          <Button
-            variant="outline"
-            onClick={() => {
-              window.localStorage.removeItem("@agenda:token")
-              setAuthenticated.off()
-            }}
-          >
-            Sair
-          </Button>
         </CardFooter>
       </CardBody>
     </Card>
