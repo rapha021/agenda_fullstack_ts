@@ -48,7 +48,12 @@ export const Profile = () => {
         </Stack>
 
         <CardFooter>
-          <ButtonGroup flexWrap="wrap" maxW="260px">
+          <ButtonGroup
+            flexWrap="wrap"
+            justifyContent="center"
+            maxW="260px"
+            h="95px"
+          >
             <Button
               variant="solid"
               onClick={() => {
