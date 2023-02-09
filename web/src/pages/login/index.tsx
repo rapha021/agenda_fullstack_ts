@@ -2,6 +2,7 @@ import {
   Button,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Input,
   InputGroup,
@@ -20,7 +21,7 @@ export const LoginPage = () => {
 
   const { loading } = useMain()
 
-  const { handleLogin } = useAuth()
+  const { handleLogin, error } = useAuth()
 
   const handleClick = () => setPassword(!password)
 
@@ -33,12 +34,12 @@ export const LoginPage = () => {
   return (
     <Flex justifyContent="center">
       <Form onSubmit={handleSubmit(handleLogin)}>
-        <FormControl isRequired>
+        <FormControl isRequired isInvalid={error}>
           <FormLabel>Seu email:</FormLabel>
           <Input type="email" {...register("email")} />
         </FormControl>
 
-        <FormControl isRequired>
+        <FormControl isRequired isInvalid={error}>
           <FormLabel>Sua senha:</FormLabel>
 
           <InputGroup size="md">
@@ -53,6 +54,7 @@ export const LoginPage = () => {
               </Button>
             </InputRightElement>
           </InputGroup>
+          <FormErrorMessage>Email ou senha inválidos</FormErrorMessage>
         </FormControl>
 
         <Flex justifyContent="space-between">

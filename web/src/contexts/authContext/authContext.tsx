@@ -30,6 +30,7 @@ const AuthProvider = ({ children }: IAuthProps) => {
 
   const handleLogin: SubmitHandler<FieldValues> = async (data) => {
     setLoading.on()
+    setError.off()
 
     await api
       .post<IUserLoginResponse>("/user/login", data)
@@ -40,7 +41,15 @@ const AuthProvider = ({ children }: IAuthProps) => {
         navigate("/dashboard")
       })
       .catch((err) => {
+        const errorMessage = err.response.data.message
+
+        toast({
+          title: "Não foi possivel realizar seu login",
+          description: errorMessage,
+          status: "error",
+        })
         setLoading.off()
+        setError.on()
       })
   }
 
@@ -53,15 +62,27 @@ const AuthProvider = ({ children }: IAuthProps) => {
 
     setLoading.on()
 
-    await api.post<IUserLoginCreate>("/user", data).then((res) => {
-      toast({
-        title: "Conta criada com sucesso!",
-        description: `Obrigado por usar nosso app, ${res.data.name}`,
-        status: "success",
+    await api
+      .post<IUserLoginCreate>("/user", data)
+      .then((res) => {
+        toast({
+          title: "Conta criada com sucesso!",
+          description: `Obrigado por usar nosso app, ${res.data.name}`,
+          status: "success",
+        })
+        navigate("/login")
+        setLoading.off()
       })
-      navigate("/login")
-      setLoading.off()
-    })
+      .catch((err) => {
+        const errorMessage = err.response.data.message
+
+        toast({
+          title: "Houve um erro ao criar sua conta.",
+          description: errorMessage,
+          status: "error",
+        })
+        setLoading.off()
+      })
   }
 
   useEffect(() => {
