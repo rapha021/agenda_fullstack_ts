@@ -54,7 +54,6 @@ const MainProvider = ({ children }: IMainProviderProps) => {
         })
       })
       .catch((err) => {
-        console.log(err)
         toast({
           title: "Não foi possivel editar",
           description: "Tente novamente mais tarde.",
