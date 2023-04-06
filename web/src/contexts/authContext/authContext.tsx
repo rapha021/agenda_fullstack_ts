@@ -37,6 +37,7 @@ const AuthProvider = ({ children }: IAuthProps) => {
       .then((res) => {
         setLoading.off();
         localStorage.setItem("@agenda:token", res.data.token);
+        setToken(res.data.token)
         setAuthenticated.on();
         navigate("/dashboard");
       })
@@ -98,6 +99,10 @@ const AuthProvider = ({ children }: IAuthProps) => {
           navigate("/dashboard");
           setToken(tokenStorage);
           setAuthenticated.on();
+        })
+        .catch((err) => {
+          setAuthenticated.off();
+          return navigate("/login");
         });
 
       api
@@ -107,12 +112,13 @@ const AuthProvider = ({ children }: IAuthProps) => {
         .then((res) => {
           setContacts(res.data);
         });
+      return;
     }
 
     navigate("/login");
 
     return setAuthenticated.off();
-  }, [loading]);
+  }, [loading, token]);
 
   return (
     <AuthContext.Provider
