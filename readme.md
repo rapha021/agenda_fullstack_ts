@@ -2,7 +2,7 @@
 
 > Projeto com intuito de demostrar minhas habilidades com as tecnologias utilizadas e para própio aprendizado.
 
-[Documentação | Docs](https://rapha021.github.io/desafio-backend-python/)
+[Documentação | Docs](https://rapha021.github.io/agenda_fullstack_ts/)
 
 # Linguagens utilizadas no projeto:
 

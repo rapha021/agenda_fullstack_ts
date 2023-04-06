@@ -3,7 +3,7 @@ require("dotenv").config()
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: "localhost",
+  host: process.env.POSTGRES_HOST,
   port: 5432,
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PWD,
