@@ -12,13 +12,17 @@ import {
   Flex,
   ButtonGroup,
   Button,
-} from "@chakra-ui/react"
-import { useMain } from "../../contexts/mainContext/mainContext"
-import { useAuth } from "../../contexts/authContext/authContext"
+} from "@chakra-ui/react";
+import { useMain } from "../../contexts/mainContext/mainContext";
+import { useAuth } from "../../contexts/authContext/authContext";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
-  const { user, onOpen, setTabs } = useMain()
-  const { setAuthenticated } = useAuth()
+  const { user, onOpen, setTabs } = useMain();
+  const { setAuthenticated } = useAuth();
+
+  const navigate = useNavigate();
+
   return (
     <Card>
       <CardHeader pb="0">
@@ -57,8 +61,8 @@ export const Profile = () => {
             <Button
               variant="solid"
               onClick={() => {
-                setTabs("editUser")
-                onOpen()
+                setTabs("editUser");
+                onOpen();
               }}
             >
               Editar perfil
@@ -66,8 +70,8 @@ export const Profile = () => {
             <Button
               variant="outline"
               onClick={() => {
-                setTabs("deleteUser")
-                onOpen()
+                setTabs("deleteUser");
+                onOpen();
               }}
             >
               Deletar conta
@@ -75,8 +79,9 @@ export const Profile = () => {
             <Button
               variant="outline"
               onClick={() => {
-                window.localStorage.removeItem("@agenda:token")
-                setAuthenticated.off()
+                window.localStorage.removeItem("@agenda:token");
+                setAuthenticated.off();
+                window.location.reload();
               }}
             >
               Sair
@@ -85,5 +90,5 @@ export const Profile = () => {
         </CardFooter>
       </CardBody>
     </Card>
-  )
-}
+  );
+};
